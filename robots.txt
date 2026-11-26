@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://sabatico2027-png.github.io/isiand/sitemap.xml
