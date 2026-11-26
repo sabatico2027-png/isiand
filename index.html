@@ -1,0 +1,934 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="جزيرة المعرفة: موسوعة عربية تجمع التاريخ والثقافة والتراث والجغرافيا والمعارف الإنسانية.">
+  <meta name="theme-color" content="#102e46">
+  <title>جزيرة المعرفة | موسوعة عربية</title>
+
+  <style>
+    :root {
+      --navy: #102e46;
+      --navy-light: #193e59;
+      --gold: #d6b878;
+      --paper: #f7f4ed;
+      --white: #ffffff;
+      --ink: #263238;
+      --muted: #718096;
+      --border: #e8e4da;
+      --shadow: 0 12px 35px rgba(16, 46, 70, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.9;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
+    }
+
+    /* رأس الموقع */
+
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 3px 15px #0002;
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 25px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .logo small {
+      display: block;
+      color: #dbe4eb;
+      font-size: 10px;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
+
+    nav a {
+      color: #e8edf2;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .menu-button {
+      display: none;
+      border: 1px solid #ffffff40;
+      background: transparent;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    /* الواجهة الرئيسية */
+
+    .hero {
+      background:
+        radial-gradient(circle at 15% 20%, #d6b87830, transparent 30%),
+        linear-gradient(135deg, #102e46, #1d4965);
+      color: white;
+      padding: 90px 0 85px;
+      text-align: center;
+    }
+
+    .hero-label {
+      color: var(--gold);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      color: #dbe5ed;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 16px;
+    }
+
+    .search-box {
+      display: flex;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      padding: 13px;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    .search-box button {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 0 23px;
+      font-weight: bold;
+    }
+
+    /* الأقسام */
+
+    section {
+      padding: 65px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: 29px;
+      margin-bottom: 7px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 25px 15px;
+      text-align: center;
+      transition: .25s;
+      cursor: pointer;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .category-icon {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .category h3 {
+      color: var(--navy);
+      font-size: 17px;
+    }
+
+    .category p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* المقالات */
+
+    .articles-section {
+      background: #eeece5;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .article-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 5px 18px #00000008;
+      transition: .25s;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .article-cover {
+      height: 185px;
+      display: grid;
+      place-items: center;
+      font-size: 65px;
+      background: linear-gradient(135deg, #183e57, #42677a);
+    }
+
+    .article-card:nth-child(2) .article-cover {
+      background: linear-gradient(135deg, #6d5039, #b79565);
+    }
+
+    .article-card:nth-child(3) .article-cover {
+      background: linear-gradient(135deg, #394f46, #8a9b76);
+    }
+
+    .article-content {
+      padding: 22px;
+    }
+
+    .article-category {
+      display: inline-block;
+      color: #82662f;
+      background: #f5edd9;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .article-content h3 {
+      color: var(--navy);
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .article-content p {
+      color: var(--muted);
+      font-size: 13px;
+      min-height: 55px;
+    }
+
+    .article-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .read-button, .share-button {
+      border: none;
+      border-radius: 8px;
+      padding: 8px 13px;
+      font-size: 12px;
+    }
+
+    .read-button {
+      background: var(--navy);
+      color: white;
+    }
+
+    .share-button {
+      background: #f0eee8;
+      color: var(--navy);
+    }
+
+    .empty-message {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      padding: 30px;
+      grid-column: 1 / -1;
+    }
+
+    /* من نحن */
+
+    .about-box {
+      max-width: 820px;
+      margin: auto;
+      text-align: center;
+      background: white;
+      padding: 38px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .about-box h2 {
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+
+    .about-box p {
+      color: #596675;
+      margin-bottom: 12px;
+    }
+
+    /* نافذة المقال */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #0009;
+      z-index: 50;
+      padding: 20px;
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      width: min(720px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      left: 18px;
+      top: 12px;
+      border: none;
+      background: #eee;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+    }
+
+    .modal-content h2 {
+      color: var(--navy);
+      margin: 15px 0;
+    }
+
+    .modal-content p {
+      margin-bottom: 15px;
+      color: #4d5964;
+    }
+
+    /* التذييل */
+
+    footer {
+      background: #0b2437;
+      color: #d9e1e7;
+      padding: 38px 0 20px;
+      text-align: center;
+    }
+
+    footer .logo {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #b7c5cf;
+    }
+
+    .footer-copy {
+      border-top: 1px solid #ffffff20;
+      margin-top: 25px;
+      padding-top: 17px;
+      font-size: 12px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 50%;
+      transform: translateX(50%);
+      background: var(--navy);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 9px;
+      display: none;
+      z-index: 100;
+      font-size: 13px;
+    }
+
+    /* الهاتف والأجهزة الصغيرة */
+
+    @media (max-width: 800px) {
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .articles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 68px;
+        right: 0;
+        left: 0;
+        background: var(--navy);
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .search-box button {
+        padding: 0 13px;
+      }
+
+      .articles {
+        grid-template-columns: 1fr;
+      }
+
+      .categories {
+        gap: 10px;
+      }
+
+      .category {
+        padding: 18px 8px;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .about-box {
+        padding: 24px 17px;
+      }
+
+      .modal-content {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo">
+        جزيرة المعرفة
+        <small>موسوعة عربية للمعرفة والثقافة</small>
+      </a>
+
+      <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+      <nav id="mainNav">
+        <a href="#">الرئيسية</a>
+        <a href="#categories">الأقسام</a>
+        <a href="#articles">المقالات</a>
+        <a href="#about">من نحن</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-label">مرحبًا بك في جزيرة المعرفة</div>
+
+        <h1>حيث تلتقي المعرفة بالتاريخ</h1>
+
+        <p>
+          اكتشف حكايات الحضارات، وكنوز الثقافة، وأسرار التاريخ.
+          رحلة معرفية تأخذك إلى عوالم من المعلومات والاكتشافات.
+        </p>
+
+        <div class="search-box">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="ابحث عن معلومة أو مقال..."
+            aria-label="البحث في المقالات"
+          >
+          <button onclick="searchArticles()">ابحث</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <h2>استكشف أقسام الموسوعة</h2>
+          <p>أربعة أبواب تفتح لك عوالم مختلفة من المعرفة</p>
+        </div>
+
+        <div class="categories">
+
+          <div class="category" onclick="filterArticles('history')">
+            <div class="category-icon">🏛️</div>
+            <h3>التاريخ والحضارات</h3>
+            <p>الحضارات والأحداث التاريخية</p>
+          </div>
+
+          <div class="category" onclick="filterArticles('culture')">
+            <div class="category-icon">📜</div>
+            <h3>الثقافة والتراث</h3>
+            <p>الآداب والفنون والعادات</p>
+          </div>
+
+          <div class="category" onclick="filterArticles('geography')">
+            <div class="category-icon">🌍</div>
+            <h3>الجغرافيا والبلدان</h3>
+            <p>الدول والمدن والمعالم</p>
+          </div>
+
+          <div class="category" onclick="filterArticles('people')">
+            <div class="category-icon">📚</div>
+            <h3>شخصيات ومعارف</h3>
+            <p>العلماء والشخصيات والمعلومات</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="articles-section" id="articles">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>من مكتبة جزيرة المعرفة</h2>
+          <p>مقالات مختارة لتكون بداية رحلتنا المعرفية</p>
+        </div>
+
+        <div class="articles" id="articlesContainer">
+
+          <article class="article-card"
+            data-category="history"
+            data-title="مملكة سبأ حضارة من قلب اليمن"
+            data-description="مملكة سبأ اليمن التاريخ حضارة مأرب سد سبأ">
+            <div class="article-cover">🏛️</div>
+            <div class="article-content">
+              <span class="article-category">التاريخ والحضارات</span>
+              <h3>مملكة سبأ: حضارة من قلب اليمن</h3>
+              <p>
+                تعرف على واحدة من أشهر الحضارات العربية القديمة،
+                وعلى تاريخ مملكة سبأ وآثارها في اليمن.
+              </p>
+              <div class="article-actions">
+                <button class="read-button" onclick="openArticle(0)">اقرأ المقال</button>
+                <button class="share-button" onclick="shareArticle(0)">↗ مشاركة</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="article-card"
+            data-category="culture"
+            data-title="الخط العربي رحلة الحروف عبر العصور"
+            data-description="الخط العربي الثقافة التراث الحروف الفنون">
+            <div class="article-cover">✒️</div>
+            <div class="article-content">
+              <span class="article-category">الثقافة والتراث</span>
+              <h3>الخط العربي: رحلة الحروف عبر العصور</h3>
+              <p>
+                رحلة في عالم الخط العربي، نتعرف فيها على تطوره
+                ومدارسه الفنية ومكانته الثقافية.
+              </p>
+              <div class="article-actions">
+                <button class="read-button" onclick="openArticle(1)">اقرأ المقال</button>
+                <button class="share-button" onclick="shareArticle(1)">↗ مشاركة</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="article-card"
+            data-category="geography"
+            data-title="طريق الحرير شبكة غيرت العالم"
+            data-description="طريق الحرير الجغرافيا البلدان التجارة التاريخ">
+            <div class="article-cover">🐪</div>
+            <div class="article-content">
+              <span class="article-category">الجغرافيا والبلدان</span>
+              <h3>طريق الحرير: شبكة غيّرت العالم</h3>
+              <p>
+                اكتشف الطرق التجارية القديمة التي ربطت
+                بين الشرق والغرب وساهمت في تبادل الثقافات.
+              </p>
+              <div class="article-actions">
+                <button class="read-button" onclick="openArticle(2)">اقرأ المقال</button>
+                <button class="share-button" onclick="shareArticle(2)">↗ مشاركة</button>
+              </div>
+            </div>
+          </article>
+
+          <div class="empty-message" id="emptyMessage">
+            لم نعثر على مقالات تطابق بحثك.
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-box">
+          <div class="category-icon">🏝️</div>
+          <h2>عن جزيرة المعرفة</h2>
+          <p>
+            جزيرة المعرفة موسوعة عربية مستقلة تهدف إلى جمع
+            المعلومات التاريخية والثقافية والجغرافية والمعرفية
+            وتقديمها للقارئ بأسلوب واضح ومنظم.
+          </p>
+          <p>
+            نؤمن بأن المعرفة إرث إنساني يستحق الحفظ والتوثيق
+            والمشاركة، وأن كل معلومة موثوقة يمكن أن تفتح
+            بابًا جديدًا للفهم والاكتشاف.
+          </p>
+          <p>
+            هذه هي بدايتنا، ونتطلع إلى بناء مكتبة معرفية
+            عربية تتسع يومًا بعد يوم.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo">جزيرة المعرفة</div>
+      <p>المعرفة تاريخ نحفظه، وثقافة نتشاركها، ومستقبل نبنيه.</p>
+      <div class="footer-copy">
+        © <span id="year"></span> جزيرة المعرفة - جميع الحقوق محفوظة
+      </div>
+    </div>
+  </footer>
+
+  <!-- نافذة قراءة المقال -->
+
+  <div class="modal" id="articleModal" onclick="closeOutside(event)">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeArticle()">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const articles = [
+      {
+        title: "مملكة سبأ: حضارة من قلب اليمن",
+        category: "التاريخ والحضارات",
+        description: "تعرف على واحدة من أشهر الحضارات العربية القديمة.",
+        content: `
+          <p>
+            تُعد مملكة سبأ من أبرز الممالك التي ظهرت في جنوب شبه
+            الجزيرة العربية، وارتبط اسمها بتاريخ اليمن القديم
+            وبالازدهار التجاري والزراعي في المنطقة.
+          </p>
+          <p>
+            اشتهرت سبأ بموقعها التجاري المهم، وبالزراعة
+            وأنظمة الري التي ساعدت على استقرار المجتمعات
+            ونمو المدن. ويُعد سد مأرب من أشهر الشواهد
+            التاريخية المرتبطة بالحضارة السبئية.
+          </p>
+          <p>
+            تركت مملكة سبأ أثرًا مهمًا في تاريخ المنطقة،
+            وما زالت آثارها ونقوشها مصدرًا لدراسة تاريخ
+            اليمن والحضارات العربية القديمة.
+          </p>
+          <p><strong>المصدر:</strong> مقال تعريفي تجريبي يحتاج إلى توثيق المصادر قبل النشر الموسوعي.</p>
+        `
+      },
+      {
+        title: "الخط العربي: رحلة الحروف عبر العصور",
+        category: "الثقافة والتراث",
+        description: "رحلة في تاريخ الخط العربي ومدارسه.",
+        content: `
+          <p>
+            الخط العربي أحد أبرز الفنون البصرية في الحضارة
+            العربية والإسلامية، وهو فن يجمع بين الكتابة
+            والجمال والتناسق الهندسي.
+          </p>
+          <p>
+            تطورت أشكال الخط العربي عبر قرون طويلة،
+            وظهرت مدارس متعددة، من أشهرها الخط الكوفي
+            والنسخ والثلث والديواني.
+          </p>
+          <p>
+            لم يقتصر استخدام الخط على تدوين الكتب،
+            بل امتد إلى العمارة والزخرفة والمخطوطات
+            والوثائق والأعمال الفنية.
+          </p>
+          <p><strong>المصدر:</strong> مقال تعريفي تجريبي يحتاج إلى توثيق المصادر قبل النشر الموسوعي.</p>
+        `
+      },
+      {
+        title: "طريق الحرير: شبكة غيّرت العالم",
+        category: "الجغرافيا والبلدان",
+        description: "الطرق التجارية القديمة بين الشرق والغرب.",
+        content: `
+          <p>
+            طريق الحرير اسم يطلق على شبكة من الطرق التجارية
+            القديمة التي ربطت مناطق واسعة من آسيا بأجزاء
+            من أوروبا وشمال أفريقيا.
+          </p>
+          <p>
+            لم تكن هذه الطرق مخصصة لتجارة الحرير فقط،
+            فقد انتقلت عبرها بضائع عديدة، إلى جانب الأفكار
+            والعلوم والتقاليد والديانات.
+          </p>
+          <p>
+            ساعدت هذه الشبكة على تعزيز التواصل بين
+            المجتمعات المختلفة، وأسهمت في تشكيل
+            علاقات اقتصادية وثقافية امتد أثرها عبر التاريخ.
+          </p>
+          <p><strong>المصدر:</strong> مقال تعريفي تجريبي يحتاج إلى توثيق المصادر قبل النشر الموسوعي.</p>
+        `
+      }
+    ];
+
+    function toggleMenu() {
+      document.getElementById("mainNav").classList.toggle("open");
+    }
+
+    function filterArticles(category) {
+      const cards = document.querySelectorAll(".article-card");
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = card.dataset.category === category;
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      document.getElementById("emptyMessage").style.display =
+        visible ? "none" : "block";
+
+      document.getElementById("articles").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function searchArticles() {
+      const query = document.getElementById("searchInput")
+        .value.trim().toLowerCase();
+
+      const cards = document.querySelectorAll(".article-card");
+      let visible = 0;
+
+      cards.forEach(card => {
+        const text = (
+          card.dataset.title + " " + card.dataset.description
+        ).toLowerCase();
+
+        const match = text.includes(query);
+        card.style.display = match ? "" : "none";
+
+        if (match) visible++;
+      });
+
+      document.getElementById("emptyMessage").style.display =
+        visible ? "none" : "block";
+
+      document.getElementById("articles").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    document.getElementById("searchInput").addEventListener(
+      "keydown", event => {
+        if (event.key === "Enter") searchArticles();
+      }
+    );
+
+    function openArticle(index) {
+      const article = articles[index];
+
+      document.getElementById("modalBody").innerHTML = `
+        <span class="article-category">${article.category}</span>
+        <h2>${article.title}</h2>
+        ${article.content}
+      `;
+
+      document.getElementById("articleModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeArticle() {
+      document.getElementById("articleModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function closeOutside(event) {
+      if (event.target.id === "articleModal") closeArticle();
+    }
+
+    async function shareArticle(index) {
+      const article = articles[index];
+      const url = new URL(window.location.href);
+
+      url.hash = "article-" + (index + 1);
+
+      const shareData = {
+        title: article.title + " | جزيرة المعرفة",
+        text: article.description,
+        url: url.href
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(url.href);
+          showToast("تم نسخ رابط المقال!");
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          showToast("تعذرت المشاركة، حاول نسخ رابط الصفحة.");
+        }
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.display = "block";
+
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2500);
+    }
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // فتح المقال عند استخدام رابط مباشر له
+    if (window.location.hash.startsWith("#article-")) {
+      const index = Number(window.location.hash.replace("#article-", "")) - 1;
+      if (index >= 0 && index < articles.length) {
+        openArticle(index);
+      }
+    }
+  </script>
+
+</body>
+</html>
